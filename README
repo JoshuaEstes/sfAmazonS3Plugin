@@ -1,0 +1,57 @@
+This plugin allows you to connect to Amazon s3 services. You should not that you
+WILL NEED the Zend library for this. It needs to be installed in lib/vendor/Zend
+
+Place this function in the ProjectConfiguration.class.php file:
+
+
+      static public function registerZend()
+      {
+        if (!self::$_ZendAutoloader)
+        {
+          set_include_path(implode(PATH_SEPARATOR, array(
+            sfConfig::get('sf_lib_dir').'/vendor',
+            get_include_path(),
+          )));
+
+          require_once 'Zend/Loader/Autoloader.php';
+          self::$_ZendAutoloader = Zend_Loader_Autoloader::getInstance();
+        }
+        return self::$_ZendAutoloader;
+      }
+
+In the same file add this variable to the top of the class:
+
+      static protected $_ZendAutoloader = false;
+
+
+If you have already added something similar in this file then you should be good
+as long as the function 'registerZend()' is in there and it is static.
+
+app.yml
+
+      prod:
+        amazon_s3:
+          enabled: true
+          bucket:  BUCKET NAME
+
+      dev:
+        amazon_s3:
+          enabled: true
+          bucket:  BUCKET NAME
+
+      test:
+        amazon_s3:
+          enabled: true
+          bucket:  BUCKET NAME
+
+      all:
+        amazon_s3:
+          access_key: PLACE ACCESS KEY HERE
+          secret_key: PLACE SECRET KEY HERE
+
+by default, amazon s3 is configured to be off by default, if you wish to have it
+turned on by default the set 'enabled: true' for all
+
+Things I need to do is have the ability to run tests on all the classes. Currently
+I have no idea if this code works. I will be using it in the future for some projects
+so I will maintain and update it as much as I can

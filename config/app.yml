@@ -1,0 +1,3 @@
+all:
+  amazon_s3:
+    enabled: false
