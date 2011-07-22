@@ -1,4 +1,4 @@
-This plugin allows you to connect to Amazon s3 services. You should not that you
+This plugin allows you to connect to Amazon s3 services. You should note that you
 WILL NEED the Zend library for this. It needs to be installed in lib/vendor/Zend
 
 Place this function in the ProjectConfiguration.class.php file:
